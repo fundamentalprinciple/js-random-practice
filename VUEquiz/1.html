@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+</head>
+<body>
+    
+    <div id="root">
+        <problem_3 />
+        <br />
+        <!-- Component for 4th  -->
+    </div>
+    
+    <script>
+
+        Vue.component('problem_3', {
+            
+            template: `
+                    <div>
+                        <button v-on:click="incr">Click me!</button>
+                        {{ count }}
+                    </div>
+            `,
+
+            data: function() {
+                return {count: 0,
+                        other_data: 1,
+                        }
+            },
+
+            methods: {
+                incr: function() {
+                    this.count++;
+                }
+            },
+        });
+            
+        
+        const App = new Vue({
+            el: '#root',
+        });
+
+    </script>
+</body>
+</html>
