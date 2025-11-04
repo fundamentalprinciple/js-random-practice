@@ -10,14 +10,73 @@
 <body>
     
     <div id="root">
-        <problem_3 />
-        <br />
-        <!-- Component for 4th  -->
+
+        <problem-6/>
+
+        <problem-5/>
+
+        <problem-4/>
+
+        <problem-3/>    
     </div>
     
     <script>
 
-        Vue.component('problem_3', {
+        Vue.component('problem-6', {
+            template: `
+                <div>
+                    <input type="checkbox" v-model="checked" >
+                    <p :class="{ highlight: checked }">lorem ipsum dolor, sit amet</p>
+                </div>
+            `,
+
+            data: function() {
+                return {
+                    checked: false
+                }
+            }
+
+        });
+
+        Vue.component('problem-5', {
+            template: `
+                <div>
+                    <input type="text" v-model="inputText"/>
+                    <button @click="display" >Click to display</button>
+                    <p>{{ displayedText }}</p>
+                </div>    
+            `,
+            data: function() {
+                return {
+                    inputText: "",
+                    displayedText: ""
+                }
+            },
+            methods: {
+                display: function() {
+                    this.displayedText = this.inputText;
+                }
+            }
+        });
+
+        Vue.component('problem-4', {
+            template: `
+                <div>
+                    <ol>
+                        <li v-for="item in list">{{ item }}</li>
+                    </ol>
+                </div>
+            `,
+
+            data: function() {
+                return {
+                    list: [1,2,3,4,5],
+                }
+            }
+        });
+
+
+        Vue.component('problem-3', {
             
             template: `
                     <div>
@@ -38,12 +97,18 @@
                 }
             },
         });
-            
         
         const App = new Vue({
             el: '#root',
         });
 
     </script>
+
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+
 </body>
 </html>
