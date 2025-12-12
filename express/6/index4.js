@@ -1,4 +1,6 @@
 import express from "express";
+import bodyParser from "body-parser";
+//import morgan from "morgan";
 
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -8,17 +10,25 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 8000;
 
+app.use(bodyParser.urlencoded({extended: true}));
+
+var naam = '';
+
 function name(req, res, next) {
 	var street = req.body.street;
 	var pet = req.body.pet;
-	const name = street + pet;
-	res.send(name);
+	naam = street + pet;
 	next();
 }
 
-//PENDING
-app.get('/', (res, req) => {
-	res.sendFile()	
+app.use(name);
+
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/public/index.html');	
+});
+
+app.post('/submit', (req, res)=>{
+	res.send(naam);
 });
 
 app.listen(port, () => {
